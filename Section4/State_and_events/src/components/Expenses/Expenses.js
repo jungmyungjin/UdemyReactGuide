@@ -1,13 +1,19 @@
 import "./Expenses.css";
-import React from "react"; // JSX에서는 굳이 안써도 되지만, 내부에서 돌아가는걸 명시하기위해 썻다
+import React, { useState } from "react"; // JSX에서는 굳이 안써도 되지만, 내부에서 돌아가는걸 명시하기위해 썻다
 import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 
 const Expenses = (props) => {
+  const [selectedYear, setSelectedYear] = useState("");
+
+  const selectedYearHandler = (selectedYearValue) => {
+    setSelectedYear(selectedYearValue);
+  };
+  console.log("selected " + selectedYear);
   return (
     <div>
-      <ExpensesFilter />
+      <ExpensesFilter onSelectedYearHandler={selectedYearHandler} />
       <Card className="expenses">
         <ExpenseItem
           title={props.items[0].title}
