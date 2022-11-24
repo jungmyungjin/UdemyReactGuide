@@ -5,7 +5,7 @@ import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 
 const Expenses = (props) => {
-  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYear, setSelectedYear] = useState("2020");
 
   const selectedYearHandler = (selectedYearValue) => {
     setSelectedYear(selectedYearValue);
@@ -13,7 +13,10 @@ const Expenses = (props) => {
   console.log("selected " + selectedYear);
   return (
     <div>
-      <ExpensesFilter onSelectedYearHandler={selectedYearHandler} />
+      <ExpensesFilter
+        selected={selectedYear}
+        onSelectedYearHandler={selectedYearHandler}
+      />
       <Card className="expenses">
         <ExpenseItem
           title={props.items[0].title}
