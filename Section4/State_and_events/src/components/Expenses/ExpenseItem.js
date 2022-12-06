@@ -10,16 +10,18 @@ const ExpenseItem = (props) => {
     console.log(title); // "Update" 출력 -> setTitle을 하더라도 바로 변경된 값이 반영되지 않는다.
   };
   return (
-    <Card className="expense-item">
-      <ExpenseDate date={props.date} />
-      <div className="expense-item__description">
-        <h2>{title}</h2>
-        <div className="expense-item__price" amount={props.amount}>
-          {props.amount}
+    <li>
+      <Card className="expense-item">
+        <ExpenseDate date={props.date} />
+        <div className="expense-item__description">
+          <h2>{props.title}</h2>
+          <div className="expense-item__price" amount={props.amount}>
+            {props.amount}
+          </div>
         </div>
-      </div>
-      <button onClick={clickHandler}>Change Title</button>
-    </Card>
+        <button onClick={clickHandler}>Change Title</button>
+      </Card>
+    </li>
   );
 };
 

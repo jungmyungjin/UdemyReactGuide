@@ -29,6 +29,10 @@ const ExpenseForm = (props) => {
   //   });
   // };
 
+  const setShowFormHandler = () => {
+    props.setShowForm();
+  };
+
   const submitHandler = (event) => {
     event.preventDefault(); //  built-in 자바스크립트, 반응하지 않은 기본 동작. 기본적으로 요청되는것을 막는다.
 
@@ -37,18 +41,21 @@ const ExpenseForm = (props) => {
       amount: enteredAmount,
       date: new Date(enteredDate), // 날짜(string) -> 날짜(Date 객체 타입)
     };
-    // props.onSaveExpenseData(expenseData);
-    props.onSaveExpenseData(expenseData);
+    if (enteredTitle !== "" && enteredAmount !== "" && enteredDate !== "") {
+      props.onSaveExpenseData(expenseData);
+      console.log("Added item!!");
+    }
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+    setShowFormHandler();
   };
 
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense_controls">
         <div className="new-expense__control">
-          <label for="">Title</label>
+          <label htmlFor="">Title</label>
           <input
             type="text"
             value={enteredTitle}
@@ -56,7 +63,7 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__control">
-          <label for="">Amount</label>
+          <label htmlFor="">Amount</label>
           <input
             type="number"
             min="0.01"
@@ -66,7 +73,7 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__control">
-          <label for="">Date</label>
+          <label htmlFor="">Date</label>
           <input
             type="date"
             min="2022-01-01"
@@ -77,6 +84,9 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={setShowFormHandler}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
